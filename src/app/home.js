@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 
 import {Header} from './header/header';
 import {CodePen} from './codePen/codePen';
@@ -22,10 +23,18 @@ export class Home extends Component {
     this.setState({CodeObj: newCodeObj});
   }
   handleCreateNew() {
-    fetch('/new', {
-      method: "POST",
-      body: JSON.stringify(this.state.CodeObj)
-    }).then(res => console.log(res), err => console.log(err));
+    $.ajax({
+      url: "/add",
+      method: "post",
+      data: this.state.CodeObj,
+      success: r => {
+        if (r.success === 1) {
+          console.log("Success");
+        } else {
+          console.log("Service Error");
+        }
+      }
+    });
   }
   render() {
     return (
