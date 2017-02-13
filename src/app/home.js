@@ -14,7 +14,8 @@ export class Home extends Component {
         code: "",
         mode: "",
         description: ""
-      }
+      },
+      username: ""
     };
     this.changeCodeObj = this.changeCodeObj.bind(this);
     this.handleCreateNew = this.handleCreateNew.bind(this);
@@ -39,7 +40,7 @@ export class Home extends Component {
   render() {
     return (
       <div className="container">
-        <Header name="Header"/>
+        <Header name="Header" username={localStorage.username}/>
 
         <CodePen name="CodePen" changeCodeObj={this.changeCodeObj}/>
 
