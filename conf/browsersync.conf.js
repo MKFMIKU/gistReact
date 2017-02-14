@@ -28,6 +28,7 @@ module.exports = function () {
         webpackHotMiddleware(webpackBundler)
       ]
     },
-    open: false
+    open: false,
+    cors: true
   };
 };

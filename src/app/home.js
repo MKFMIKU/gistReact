@@ -23,14 +23,17 @@ export class Home extends Component {
   changeCodeObj(newCodeObj) {
     this.setState({CodeObj: newCodeObj});
   }
-  handleCreateNew() {
+  handleCreateNew(e) {
+    e.preventDefault();
     $.ajax({
-      url: "/add",
+      url: "http://gist.kfnoon.com/add",
       method: "post",
       data: this.state.CodeObj,
       success: r => {
         if (r.success === 1) {
           console.log("Success");
+          console.log(r.uid);
+          window.location.href = `/${r.uid}`;
         } else {
           console.log("Service Error");
         }
@@ -40,7 +43,7 @@ export class Home extends Component {
   render() {
     return (
       <div className="container">
-        <Header name="Header" username={localStorage.username}/>
+        <Header name="Header"/>
 
         <CodePen name="CodePen" changeCodeObj={this.changeCodeObj}/>
 

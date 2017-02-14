@@ -5,7 +5,7 @@ import "./header.styl";
 
 export class Header extends Component {
   render() {
-    const username = this.props.username;
+    const username = localStorage.username;
     let menu;
     if (username) {
       menu = (
@@ -26,7 +26,7 @@ export class Header extends Component {
         <div className="content">
           <a href="/"><span><strong>Gist</strong>Noon</span></a>
           <div className="menu">
-            <span>New gist</span>
+            <span><Link to="/" target="_blank">New gist</Link></span>
             {menu}
           </div>
         </div>
@@ -34,7 +34,3 @@ export class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  username: React.PropTypes.string
-};

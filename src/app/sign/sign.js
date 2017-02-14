@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Router} from 'react-router';
 import $ from 'jquery';
 
 import "./sign.styl";
@@ -53,7 +54,7 @@ export class Sign extends Component {
   }
   handlePostId() {
     $.ajax({
-      url: "http://localhost:8080/user/signIn",
+      url: "http://gist.kfnoon.com/user/signIn",
       method: "post",
       data: {
         username: this.state.username,
@@ -62,7 +63,7 @@ export class Sign extends Component {
       success: r => {
         if (r.success === 1) {
           localStorage.username = r.username;
-          window.location.href = '/';
+          Router.browserHistory.push('/');
         } else if (r.error) {
           if (r.error === "notExist") {
             this.setState({signUp: true});
@@ -77,7 +78,7 @@ export class Sign extends Component {
       return;
     }
     $.ajax({
-      url: "http://localhost:8080/user/signUp",
+      url: "http://gist.kfnoon.com/user/signUp",
       method: "post",
       data: {
         username: this.state.username,
@@ -86,7 +87,7 @@ export class Sign extends Component {
       success: r => {
         if (r.success === 1) {
           localStorage.username = r.username;
-          window.location.href = '/';
+          Router.browserHistory.push('/');
         } else if (r.error) {
           if (r.error === "Existed") {
             console.log("Existed");
